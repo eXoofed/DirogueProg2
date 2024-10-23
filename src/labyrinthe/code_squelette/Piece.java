@@ -1,4 +1,4 @@
-package code_squelette;
+package labyrinthe.code_squelette;
 
 /**
  * Répresente un lieu dans le labyrinthe: une grotte, une salle, une chambre, une

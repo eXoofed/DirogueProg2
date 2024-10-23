@@ -1,4 +1,4 @@
-package code_squelette;
+package labyrinthe.code_squelette;
 
 /**
  * Représentation d'un labyrinthe (graphe non-orienté). La méthode

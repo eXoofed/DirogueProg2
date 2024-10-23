@@ -1,4 +1,4 @@
-package code_squelette;
+package labyrinthe.code_squelette;
 
 /**
  * La representation d'une aventure du point de vue du joueur. Les classes qui

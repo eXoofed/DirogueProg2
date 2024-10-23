@@ -1,4 +1,4 @@
-package soumission;
+package labyrinthe.soumission;
 
 import labyrinthe.code_squelette.*;
 

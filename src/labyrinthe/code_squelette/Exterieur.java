@@ -1,4 +1,4 @@
-package code_squelette;
+package labyrinthe.code_squelette;
 
 /**
  * L'Exterieur est une Piece spéciale. Pour qu'un Labyrinthe ait une entrée, un

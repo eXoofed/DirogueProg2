@@ -1,4 +1,4 @@
-package code_squelette;
+package labyrinthe.code_squelette;
 
 /**
  * Les différents types des choses qu'on pourrait rencontrer lors d'une
