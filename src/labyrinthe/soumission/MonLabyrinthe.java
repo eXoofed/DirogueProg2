@@ -1,44 +1,73 @@
 package labyrinthe.soumission;
-import labyrinthe.code_squelette.Exterieur;
-import labyrinthe.code_squelette.Labyrinthe;
-import labyrinthe.code_squelette.Piece;
+import labyrinthe.code_squelette.*;
 
-public class MonLabyrinthe implements Labyrinthe {
+public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
+    /**
+     *
+     */
+    Piece listesAdj[][];
+    /**
+     *
+     */
+    Piece pieces[];
 
-    // Attributs:
-    Piece[] pieces = new Piece[50];
-
-    // Constructeur:
+    public MonLabyrinthe(int nbPieces) {
+        listesAdj = new Piece[50][8];
+        pieces = new Piece[nbPieces];
+    }
 
 
     @Override
     public Piece[] getPieces() {
-        return new Piece[0];
+        return this.pieces;
     }
 
     @Override
     public int nombreDePieces() {
-        return 0;
+        return pieces.length;
     }
 
     @Override
     public void ajouteEntree(Exterieur out, Piece e) {
+        int id = e.getID();
+        int i = 0;
+
+        while(i<8 && listesAdj[id-1][i] != null) {
+            i++;
+        }
+        if (i <8){
+
+            listesAdj[id-1][i]=out;
+        }
 
     }
 
     @Override
     public void ajouteCorridor(Piece e1, Piece e2) {
+        int id = e2.getID();
+        int i = 0;
+        while(i<8 && listesAdj[id-1][i] != null) {
+            i++;
+        }
+        if (i <8){
+
+            listesAdj[id-1][i]=e1;
+        }
 
     }
 
     @Override
     public boolean existeCorridorEntre(Piece e1, Piece e2) {
+        for (int i = 0; i < 8; i++) {
+            if (listesAdj[e2.getID()][i] == e1) {
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public Piece[] getPiecesConnectees(Piece e) {
-        return new Piece[0];
+        return listesAdj[e.getID()];
     }
-
 }
