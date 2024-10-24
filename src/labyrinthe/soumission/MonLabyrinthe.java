@@ -3,7 +3,12 @@ import labyrinthe.code_squelette.Exterieur;
 import labyrinthe.code_squelette.Labyrinthe;
 import labyrinthe.code_squelette.Piece;
 
-public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
+public class MonLabyrinthe implements Labyrinthe {
+
+    // Attributs:
+    Piece[] pieces = new Piece[50];
+
+    // Constructeur:
 
 
     @Override
@@ -35,4 +40,5 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
     public Piece[] getPiecesConnectees(Piece e) {
         return new Piece[0];
     }
+
 }
