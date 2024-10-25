@@ -76,14 +76,14 @@ public class MonAventure extends Aventure {
         return boss;
     }
 
-    // Incomplet
     @Override
     public Piece[] cheminJusquAuBoss() {
         Piece[] pieces = carte.getPieces();
         int i = 0;
         boolean cond = pieces[i] != null;
-        boolean discontinue = false;
-        int pieceBoss = -1;
+        boolean discontinue = false; // vérifie si discontinuité (pas de chemin entre i et i+1)
+        int pieceBoss = -1; // indice de la piece avec boss
+
         while (cond && (pieceBoss ==-1) && !discontinue) {
             if (pieces[i].getRencontreType() == RencontreType.BOSS)
                 pieceBoss = i;
@@ -92,7 +92,18 @@ public class MonAventure extends Aventure {
             i++;
             cond = pieces[i] != null;
         }
-        return new Piece[0];
+
+        Piece[] chaine;
+        if (pieces[i] == null || cond)
+            chaine = new Piece[0];
+        else {
+            chaine = new Piece[pieceBoss + 1];
+            for (int j = 0; j <= pieceBoss; j++) {
+                chaine[i] = pieces[i];
+            }
+        }
+
+        return chaine;
     }
 
     // Une fonction pour tester la classe
