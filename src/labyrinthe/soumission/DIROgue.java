@@ -66,9 +66,10 @@ public class DIROgue {
 						x = new Gargouille(); //… choix 3
 				}
 			}
+			else scenario += "ERREUR";
 			scenario += x.rencontrer() + "/n";
+
 		}
 		return null;
 	}
-
 }
