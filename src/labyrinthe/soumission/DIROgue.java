@@ -31,6 +31,13 @@ public class DIROgue {
 		return null;
 	}
 
+	/** Génère le scénario en affichant une phrase appropriée pour chaque rencontre
+	 * sur le chemin vers le boss.
+	 * @author William Perktold.
+	 *
+	 * @param a l'objet de type Aventure qu'on traverse.
+	 * @return Un String scenario qui contient les phrases associées à chaque rencontre.
+	 * */
 	public static String genererScenario(Aventure a) {
 		Piece[] chemin = a.cheminJusquAuBoss();
 		String scenario = "";
@@ -68,8 +75,7 @@ public class DIROgue {
 			}
 			else scenario += "ERREUR";
 			scenario += x.rencontrer() + "/n";
-
 		}
-		return null;
+		return scenario;
 	}
 }
