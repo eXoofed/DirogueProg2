@@ -16,23 +16,28 @@ public class DIROgue {
 		String input = "";
 		int id;
 		int idDeux;
+		int esp1;
+		int esp2;
 		boolean cond1;
 		boolean cond2;
 		boolean rencontreValide;
 
 
 		System.out.println("Vous pouvez rajouter des pièces (piece id rencontre)");
+		input = scanObj.nextLine();
 
-		while (input != "CORRIDORS") {
+		while (!input.equals("CORRIDORS")) {
 
-			cond1 = (input == RencontreType.BOSS.name() || input == RencontreType.RIEN.name());
-			cond2 = (input == RencontreType.MONSTRE.name() || input == RencontreType.TRESOR.name());
+			esp1 = input.indexOf(" ");
+			esp2 = input.lastIndexOf(" ");
+			id = Integer.valueOf(input.substring(esp1+1,esp2));
+			input = input.substring(esp2+1, input.length()).toUpperCase();
+
+			cond1 = (input.equals(RencontreType.BOSS.name()) || input.equals(RencontreType.RIEN.name()));
+			cond2 = (input.equals(RencontreType.MONSTRE.name()) || input.equals(RencontreType.TRESOR.name()));
 			rencontreValide = cond1 || cond2;
-			id =scanObj.nextInt();
-			input = scanObj.next();
 
-
-			if (id > 0 && rencontreValide) {
+			if (id > 0 && id < 50 && rencontreValide) {
 				temp = piecesLab;
 
 				piecesLab = new Piece[temp.length+1];
@@ -46,21 +51,29 @@ public class DIROgue {
 			else {
 				System.out.println("Le ID ou type de rencontre est invalide.");
 			}
+			input = scanObj.nextLine();
+			System.out.println(input);
 		}
 
 
 
 		System.out.println("Vous pouvez rajouter des corridors (corridor id1 id2)");
-		while (input != "FIN"){
-			id =scanObj.nextInt();
-			idDeux = scanObj.nextInt();
-			if (id >=0 && idDeux >=0){
+		input = scanObj.nextLine();
+		while (!input.equals("FIN")){
+
+			esp1 = input.indexOf(" ");
+			esp2 = input.lastIndexOf(" ");
+			id = Integer.valueOf(input.substring(esp1+1,esp2));
+			idDeux = Integer.valueOf(input.substring(esp2+1, input.length()));
+
+
+			if (id >=0 && idDeux >=0 && id <50 && idDeux<50 && id!=idDeux){
  				System.out.println("waoh"+id+"woohoo"+idDeux);
 			}
 			else{
-				System.out.println("Un des deux IDs est invalide.");
+				System.out.println("Un des deux IDs est invalide. Ils doivent être différents puis entre 0 et 50.");
 			}
-
+			input = scanObj.nextLine();
 		}
 
 

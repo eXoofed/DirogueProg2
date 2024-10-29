@@ -3,18 +3,38 @@ import labyrinthe.code_squelette.*;
 
 public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
     /**
-     *
+     * Contient les ids que chaque piece a accès.
      */
-    Piece listesAdj[][];
+    int[][] listesAdj;
     /**
      *
      */
-    Piece pieces[];
+    Piece[] pieces;
 
-    public MonLabyrinthe(int nbPieces) {
-        listesAdj = new Piece[50][8];
-        pieces = new Piece[nbPieces];
+    public MonLabyrinthe(Piece[] pieces) {
+        Piece temp;
+        int nbPieces = pieces.length;
+        //On déclare 8 emplacements afin d'éviter une quantité excessive de resizes.
+        listesAdj = new int[nbPieces][8];
+        for (int i = 0; i < nbPieces; i++) {
+            listesAdj[i] = new int[] {-1,-1,-1,-1,-1,-1,-1,-1};
+        }
+        this.pieces = pieces;
+
+        for (int i = 0; i < nbPieces-1; i++) {
+            for (int j = 0; j < nbPieces-1-i; j++) {
+                if (this.pieces[j].getID()>this.pieces[j+1].getID()){
+                    temp= this.pieces[j];
+                    this.pieces[j]=this.pieces[j+1];
+                    this.pieces[j+1]=temp;
+                }
+            }
+        }
+
+
+
     }
+
 
 
     @Override
@@ -26,6 +46,7 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
     public int nombreDePieces() {
         return pieces.length;
     }
+
 
     @Override
     public void ajouteEntree(Exterieur out, Piece e) {
@@ -70,4 +91,6 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
     public Piece[] getPiecesConnectees(Piece e) {
         return listesAdj[e.getID()];
     }
+
+
 }
