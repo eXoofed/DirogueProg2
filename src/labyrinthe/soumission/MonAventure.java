@@ -6,57 +6,57 @@ import labyrinthe.code_squelette.RencontreType;
 
 public class MonAventure extends Aventure {
 
-
-
     // Constructeur
     public MonAventure(Labyrinthe c) {
         super(c);
     }
 
-
     @Override
     public boolean estPacifique() {
-        Piece[] pieces = carte.getPieces();
-        int i = 0;
-        boolean cond = pieces[i] != null;
-        boolean pacifique = true;
-        while (cond && pacifique) {
-            boolean estRien = pieces[i].getRencontreType() == RencontreType.RIEN;
-            boolean estTresor = pieces[i].getRencontreType() == RencontreType.TRESOR;
-            if (estRien || estTresor)
-                pacifique = false;
+
+        Piece[] pieces = carte.getPieces(); // un tableau des pieces
+        int i = 0; // nombre d'itérations
+        boolean pacifique = true; // si le labyrinthe est pacifique pour le moment
+
+        while (pacifique && i < pieces.length) {
+            // verifier si les rencontres sont non pacifiques
+            boolean estMonstre = pieces[i].getRencontreType() == RencontreType.MONSTRE;
+            boolean estBoss = pieces[i].getRencontreType() == RencontreType.BOSS;
+
+            if (estMonstre || estBoss)
+                pacifique = false; // le labyrinthe n'est pas pacifique
+
             i++;
-            cond = pieces[i] != null;
         }
         return pacifique;
     }
 
     @Override
     public boolean contientDuTresor() {
+
         Piece[] pieces = carte.getPieces();
-        int i = 0;
-        boolean cond = pieces[i] != null;
-        boolean tresor = false;
-        while (cond && !tresor) {
+        int i = 0; // itération
+        boolean tresor = false;  // s'il y a trésor
+
+        while (!tresor && i < pieces.length) {
             if (pieces[i].getRencontreType() == RencontreType.TRESOR)
                 tresor = true;
             i++;
-            cond = pieces[i] != null;
         }
         return tresor;
     }
 
     @Override
     public int getTresorTotal() {
+
         Piece[] pieces = carte.getPieces();
         int i = 0;
-        boolean cond = pieces[i] != null;
-        int ntresors = 0;
-        while (cond) {
+        int ntresors = 0; // nombre de rencontres type trésor
+
+        while (i < pieces.length) {
             if (pieces[i].getRencontreType() == RencontreType.TRESOR)
-                ntresors ++;
+                ntresors ++; // augmente le nombre de tresor
             i++;
-            cond = pieces[i] != null;
         }
         return ntresors;
     }
@@ -65,13 +65,12 @@ public class MonAventure extends Aventure {
     public boolean contientBoss() {
         Piece[] pieces = carte.getPieces();
         int i = 0;
-        boolean cond = pieces[i] != null;
         boolean boss = false;
-        while (cond && !boss) {
+
+        while (i < pieces.length && !boss) {
             if (pieces[i].getRencontreType() == RencontreType.BOSS)
                 boss = true;
             i++;
-            cond = pieces[i] != null;
         }
         return boss;
     }
@@ -80,25 +79,28 @@ public class MonAventure extends Aventure {
     public Piece[] cheminJusquAuBoss() {
         Piece[] pieces = carte.getPieces();
         int i = 0;
-        boolean cond = pieces[i] != null;
-        boolean discontinue = false; // vérifie si discontinuité (pas de chemin entre i et i+1)
+        boolean discontinue = false; // vérifie si discontinuité (pas de chemin entre i et i+1 ou i+1 n'existe pas)
         int pieceBoss = -1; // indice de la piece avec boss
 
-        while (cond && (pieceBoss ==-1) && !discontinue) {
+        while (i < pieces.length && (pieceBoss ==-1) && !discontinue) {
+            boolean aProchain = pieces[i].getID() + 1 == pieces[i+1].getID();  // prochain existe
+            boolean aCorridor = carte.existeCorridorEntre(pieces[i], pieces[i+1]);  // prochain est connecté
+
             if (pieces[i].getRencontreType() == RencontreType.BOSS)
                 pieceBoss = i;
-            else if (!carte.existeCorridorEntre(pieces[i], pieces[i+1]))
+            else if (!aProchain || !aCorridor)
                 discontinue = true;
+
             i++;
-            cond = pieces[i] != null;
         }
 
+        // créer le tableau qui sera retourné
         Piece[] chaine;
-        if (pieces[i] == null || cond)
+        if (discontinue)
             chaine = new Piece[0];
         else {
             chaine = new Piece[pieceBoss + 1];
-            for (int j = 0; j <= pieceBoss; j++) {
+            for (int j = 0; j < pieceBoss; j++) {
                 chaine[i] = pieces[i];
             }
         }
@@ -106,12 +108,5 @@ public class MonAventure extends Aventure {
         return chaine;
     }
 
-    // Une fonction pour tester la classe
-    public void test() {
-        System.out.println(estPacifique());
-        System.out.println(contientDuTresor());
-        System.out.println(contientBoss());
-        System.out.println(getTresorTotal());
-        System.out.println(cheminJusquAuBoss());
-    }
+
 }
