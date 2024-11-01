@@ -11,8 +11,7 @@ public class DIROgue {
 
 
 		// Créer MonAventure et MonLabyrinthe
-		Piece[] piecesLab = new Piece[0];
-		Piece[] temp;
+		Piece[] piecesLab = new Piece[50];
 		Scanner scanObj = new Scanner(System.in);
 		String input = "";
 		int id;
@@ -27,6 +26,7 @@ public class DIROgue {
 		System.out.println("Vous pouvez rajouter des pièces (piece id rencontre)");
 		input = scanObj.nextLine();
 
+
 		while (!input.equals("CORRIDORS")) {
 
 			esp1 = input.indexOf(" ");
@@ -39,14 +39,8 @@ public class DIROgue {
 			rencontreValide = cond1 || cond2;
 
 			if (id > 0 && id < 50 && rencontreValide) {
-				temp = piecesLab;
 
-				piecesLab = new Piece[temp.length+1];
-				for (int i = 0; i < temp.length; i++) {
-					piecesLab[i] = temp[i];
-				}
-
-				piecesLab[temp.length] = new Piece(id, RencontreType.valueOf(input));
+				piecesLab[id] = new Piece(id, RencontreType.valueOf(input));
 
 			}
 			else {
