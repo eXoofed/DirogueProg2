@@ -111,6 +111,7 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
 
         while (i<8 && listesAdj[id][i] != -1) {
             temp = piecesConnectees;
+
             piecesConnectees= new Piece[i+1];
 
             piecesConnectees[i]=pieces[listesAdj[id][i]];
