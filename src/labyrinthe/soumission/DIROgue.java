@@ -56,7 +56,6 @@ public class DIROgue {
 			System.out.println(input);
 		}
 
-		MonLabyrinthe labyrinthe = new MonLabyrinthe(piecesLab);
 
 
 		System.out.println("Vous pouvez rajouter des corridors (corridor id1 id2)");
@@ -71,7 +70,6 @@ public class DIROgue {
 
 			if (id >=0 && idDeux >=0 && id <50 && idDeux<50 && id!=idDeux){
  				System.out.println("waoh"+id+"woohoo"+idDeux);
-				labyrinthe.ajouteCorridor(labyrinthe.pieces[id],labyrinthe.pieces[idDeux]);
 			}
 			else{
 				System.out.println("Un des deux IDs est invalide. Ils doivent être différents puis entre 0 et 50.");
@@ -80,15 +78,16 @@ public class DIROgue {
 		}
 
 
-		if (labyrinthe.listesAdj[0][0]==-1)
-		{
-			labyrinthe.ajouteEntree(Exterieur.getExterieur(),labyrinthe.pieces[1]);
-		}
 
-		MonAventure aventure = new MonAventure(labyrinthe);
+		//Je ajoute des pièces
 
-		genererRapport(aventure);
-		genererScenario(aventure);
+		//Attend pour CORRIDORS
+
+		//Je ajoute des corridors
+
+		//Attend pour FIN
+
+
 
 
 	}
@@ -149,7 +148,7 @@ public class DIROgue {
 	 * */
 	public static String genererScenario(Aventure a) {
 		Piece[] chemin = a.cheminJusquAuBoss();
-		String scenario = "";
+		String scenario = "Scenario:\n";
 
 		for (int i = 0; i < chemin.length; i++) {
 			Rencontre x = null;
@@ -186,7 +185,7 @@ public class DIROgue {
 			}
 			else scenario += "ERREUR";
 
-			scenario += x.rencontrer() + "/n";
+			scenario += x.rencontrer() + "\n";
 		}
 		return scenario;
 	}
