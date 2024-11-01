@@ -53,33 +53,35 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
 
     @Override
     public void ajouteCorridor(Piece e1, Piece e2) {
+
         int i = 0;
+        int idUn;
+        int idDeux;
 
-        int idUn = e1.getID();
-        int idDeux = e2.getID();
 
-        if (pieces[idUn]==null && pieces[idDeux]==null){
-            pieces[idUn]=e1;
-            pieces[idDeux]=e2;
+        if (pieces[e1.getID()]!=null && pieces[e2.getID()]!=null){
+            idUn = e1.getID();
+            idDeux = e2.getID();
+            if (!existeCorridorEntre(e1,e2))
+            {
+                while(i<8 && listesAdj[idUn][i] != -1) {
+                    i++;
+                }
+                if (i <8){
+
+                    listesAdj[idUn][i]=idDeux;
+                }
+
+                while(i<8 && listesAdj[idDeux][i] != -1) {
+                    i++;
+                }
+                if (i <8){
+
+                    listesAdj[idDeux][i]=idUn;
+                }
         }
 
-        if (!existeCorridorEntre(e1,e2))
-        {
-            while(i<8 && listesAdj[idUn][i] != -1) {
-                i++;
-            }
-            if (i <8){
 
-                listesAdj[idUn][i]=idDeux;
-            }
-
-            while(i<8 && listesAdj[idDeux][i] != -1) {
-                i++;
-            }
-            if (i <8){
-
-                listesAdj[idDeux][i]=idUn;
-            }
         }
 
 
