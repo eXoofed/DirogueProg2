@@ -56,7 +56,7 @@ public class DIROgue {
 			System.out.println(input);
 		}
 
-
+		MonLabyrinthe labyrinthe = new MonLabyrinthe(piecesLab);
 
 		System.out.println("Vous pouvez rajouter des corridors (corridor id1 id2)");
 		input = scanObj.nextLine();
@@ -70,6 +70,7 @@ public class DIROgue {
 
 			if (id >=0 && idDeux >=0 && id <50 && idDeux<50 && id!=idDeux){
  				System.out.println("waoh"+id+"woohoo"+idDeux);
+				 labyrinthe.ajouteCorridor(labyrinthe.pieces[id],labyrinthe.pieces[idDeux]);
 			}
 			else{
 				System.out.println("Un des deux IDs est invalide. Ils doivent être différents puis entre 0 et 50.");
@@ -77,8 +78,10 @@ public class DIROgue {
 			input = scanObj.nextLine();
 		}
 
+		if (labyrinthe.listesAdj[0][0]==-1){
+			labyrinthe.ajouteEntree(Exterieur.getExterieur(),labyrinthe.pieces[1]);
 
-
+		}
 
 	}
 
