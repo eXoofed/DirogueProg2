@@ -9,6 +9,7 @@ public class DIROgue {
 
 	public static void main(String[] args) {
 
+
 		// Créer MonAventure et MonLabyrinthe
 		Piece piecesLab[] = new Piece[0];
 		Piece temp[];
@@ -91,20 +92,51 @@ public class DIROgue {
 
 	}
 
-	/*
-	 * Cette methode n'est pas necessaire pour le TP, c'est ici juste pour vous
-	 * demontrer comment utiliser la classe Exterieur.
-	 */
-	private static void expliquerQuelquesChoses() {
-		// ceci est la seule facon de creer une instance de la classe Exterieur!
-		Exterieur lExterieur = Exterieur.getExterieur();
-		// l'exterieur contient le type de rencontre RencontreType.RIEN
-		System.out.println(lExterieur.getRencontreType() == RencontreType.RIEN);
-	}
 
+	/** Une méthode qui génère un rapport sur l'aventure
+	 * incluant quelques pieces, si c'est pacifique, contient un boss
+	 * quantité de trésor, et le chemin au boss
+	 * @param a l'aventure qui est décrite par le rapport
+	 * @return le rapport sous forme de string */
 	public static String genererRapport(Aventure a) {
-		// TODO: à remplir!
-		return null;
+		String rapport = "Rapport:\n";  // string contenant le rapport
+
+		Labyrinthe carte = a.getLabyrinthe();
+		Piece[] pieces = carte.getPieces();
+		int npieces = carte.nombreDePieces();
+
+		rapport += "Donjon avec " + npieces + " pieces:\n";
+
+		for (int i=0; i<npieces || i<4 ; i++) {
+			rapport += pieces[i] + ":";
+			rapport += carte.getPiecesConnectees(pieces[i]);
+			rapport += "\n";
+		}
+
+		// Affiche si c'est pacifique ou non
+		if (a.estPacifique())
+			rapport += "Pacifique.\n";
+		else
+			rapport += "Non pacifique.\n";
+
+		// affiche si le labyrinthe contient un boss ou non
+		if (a.contientBoss())
+			rapport += "Contient un boss.\n";
+		else rapport += "Ne contient pas un boss.\n";
+
+		// affiche la quantité de trésors dans le labyrinthe
+		rapport += "Contient " + a.getTresorTotal() + " tresors.\n";
+
+		// Ajouter le chemin jusqu'au boss :
+		Piece[] cheminBoss = a.cheminJusquAuBoss();
+		if (cheminBoss.length > 0) {
+			rapport += "Chemin jusqu'au boss :\n";
+			for (int i=0; i<cheminBoss.length ; i++) {
+				rapport += cheminBoss[i] + "\n";
+			}
+		}
+
+		return rapport;
 	}
 
 	/** Génère le scénario en affichant une phrase appropriée pour chaque rencontre
@@ -117,8 +149,10 @@ public class DIROgue {
 	public static String genererScenario(Aventure a) {
 		Piece[] chemin = a.cheminJusquAuBoss();
 		String scenario = "";
+
 		for (int i = 0; i < chemin.length; i++) {
 			Rencontre x = null;
+
 			if (chemin[i].getRencontreType() == RencontreType.BOSS)
 				x = new Boss();
 			else if (chemin[i].getRencontreType() == RencontreType.RIEN)
@@ -150,6 +184,7 @@ public class DIROgue {
 				}
 			}
 			else scenario += "ERREUR";
+
 			scenario += x.rencontrer() + "/n";
 		}
 		return scenario;

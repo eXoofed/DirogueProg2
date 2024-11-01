@@ -1,5 +1,6 @@
 package labyrinthe.rencontres;
 
+/** un trésor de type artefact magique */
 public class ArtefactMagique extends Tresor{
 
     @Override

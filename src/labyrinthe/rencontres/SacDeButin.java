@@ -1,5 +1,6 @@
 package labyrinthe.rencontres;
 
+/** Un tresor de type sac de butin*/
 public class SacDeButin extends Tresor{
 
     @Override
