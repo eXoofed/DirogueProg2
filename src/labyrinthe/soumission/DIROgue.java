@@ -77,8 +77,8 @@ public class DIROgue {
 
 		}
 		MonAventure aventure = new MonAventure(labyrinthe);
-		genererRapport(aventure);
-		genererScenario(aventure);
+		System.out.println(genererRapport(aventure));
+		System.out.println(genererScenario(aventure));
 
 	}
 
