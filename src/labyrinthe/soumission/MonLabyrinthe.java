@@ -70,7 +70,7 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
             }
             if (i <8){
 
-                listesAdj[idUn-1][i]=idDeux;
+                listesAdj[idUn][i]=idDeux;
             }
 
             while(i<8 && listesAdj[idDeux][i] != -1) {
@@ -78,7 +78,7 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
             }
             if (i <8){
 
-                listesAdj[idDeux-1][i]=idUn;
+                listesAdj[idDeux][i]=idUn;
             }
         }
 
