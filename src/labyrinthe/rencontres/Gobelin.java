@@ -1,7 +1,7 @@
 package labyrinthe.rencontres;
 
+/** un monstre de type gobelin*/
 public class Gobelin extends Monstre{
-    public Gobelin() {}
 
     @Override
     public String rencontrer() {

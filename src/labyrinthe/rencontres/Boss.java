@@ -1,5 +1,6 @@
 package labyrinthe.rencontres;
 
+/** une rencontre de type Boss */
 public class Boss  extends Gargouille{
 
     @Override
