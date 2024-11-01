@@ -76,8 +76,12 @@ public class DIROgue {
 			labyrinthe.ajouteEntree(Exterieur.getExterieur(),labyrinthe.pieces[1]);
 
 		}
+		MonAventure aventure = new MonAventure(labyrinthe);
+		genererRapport(aventure);
+		genererScenario(aventure);
 
 	}
+
 
 
 	/** Une méthode qui génère un rapport sur l'aventure
