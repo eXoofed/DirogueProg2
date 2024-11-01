@@ -79,16 +79,6 @@ public class DIROgue {
 
 
 
-		//Je ajoute des pièces
-
-		//Attend pour CORRIDORS
-
-		//Je ajoute des corridors
-
-		//Attend pour FIN
-
-
-
 
 	}
 
