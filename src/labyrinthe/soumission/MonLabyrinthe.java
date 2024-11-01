@@ -59,7 +59,8 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
         int idDeux;
 
 
-        if (pieces[e1.getID()]!=null && pieces[e2.getID()]!=null){
+
+        if (e1!=null && e2!=null){
             idUn = e1.getID();
             idDeux = e2.getID();
             if (!existeCorridorEntre(e1,e2))
@@ -108,8 +109,12 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
     public Piece[] getPiecesConnectees(Piece e) {
         Piece[] temp = new Piece[0];
         Piece[] piecesConnectees = new Piece[0];
-        int id = e.getID();
+
+        if (e== null)
+            return null;
+
         int i =0;
+        int id = e.getID();
 
         while (i<8 && listesAdj[id][i] != -1) {
             temp = piecesConnectees;
