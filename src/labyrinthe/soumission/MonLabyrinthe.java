@@ -37,12 +37,19 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
 
     @Override
     public Piece[] getPieces() {
+
         return this.pieces;
     }
 
     @Override
     public int nombreDePieces() {
-        return pieces.length;
+        int j=0;
+        for (int i = 0; i < 50; i++) {
+            if (pieces[i]!=null){
+                j++;
+            }
+        }
+        return j;
     }
 
 
