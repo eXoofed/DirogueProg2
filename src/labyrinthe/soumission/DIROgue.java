@@ -102,6 +102,7 @@ public class DIROgue {
 			if (pieces[i] != null) {
 				rapport += pieces[i] + ":";
 				rapport += carte.getPiecesConnectees(pieces[i]);
+				System.out.println(carte.getPiecesConnectees(pieces[i]));
 				rapport += "\n";
 			}
 		}
