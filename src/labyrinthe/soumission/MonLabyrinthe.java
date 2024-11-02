@@ -48,7 +48,18 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
 
     @Override
     public void ajouteEntree(Exterieur out, Piece e) {
-        ajouteCorridor(out, e);
+        int id;
+
+        if (e!=null)
+        {
+            id = e.getID();
+            if (pieces[id]==null)
+                pieces[id] = e;
+            ajouteCorridor(out, e);
+        }
+
+
+
     }
 
     @Override
