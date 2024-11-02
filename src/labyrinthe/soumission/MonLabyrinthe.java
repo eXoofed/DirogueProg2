@@ -69,13 +69,14 @@ public class MonLabyrinthe implements Labyrinthe {
         int idUn;
         int idDeux;
 
-
-
+        //On vérifie que les param sont valables
         if (e1!=null && e2!=null){
             idUn = e1.getID();
             idDeux = e2.getID();
+            //On ajoute le corridor si seulement il n'existe pas
             if (!existeCorridorEntre(e1,e2))
             {
+                //On cherche le prochain espace dispo
                 while(i<8 && listesAdj[idUn][i] != -1) {
                     i++;
                 }
@@ -83,7 +84,7 @@ public class MonLabyrinthe implements Labyrinthe {
 
                     listesAdj[idUn][i]=idDeux;
                 }
-
+                //On fait de même pour l'autre pièce
                 while(i<8 && listesAdj[idDeux][i] != -1) {
                     i++;
                 }
@@ -104,10 +105,12 @@ public class MonLabyrinthe implements Labyrinthe {
     public boolean existeCorridorEntre(Piece e1, Piece e2) {
         int idUn;
         int idDeux;
+        //Vérification des params
         if (e1!=null && e2!=null)
         {
             idUn = e1.getID();
             idDeux = e2.getID();
+            //Si matching, seulement besoin de vérifier sur une liste car ajouterCorridor fait les deux
             for (int i = 0; i < 8; i++) {
                 if (listesAdj[idDeux][i] == idUn) {
                     return true;
@@ -120,6 +123,7 @@ public class MonLabyrinthe implements Labyrinthe {
 
     @Override
     public Piece[] getPiecesConnectees(Piece e) {
+        //Beson de tampon pour resize
         Piece[] temp = new Piece[0];
         Piece[] piecesConnectees = new Piece[0];
 
@@ -129,6 +133,7 @@ public class MonLabyrinthe implements Labyrinthe {
         int i =0;
         int id = e.getID();
 
+        //Collectionne les pièces adjacentes en parcourant les listes adjacentes pour prendre leur ID.
         while (i<8 && listesAdj[id][i] != -1) {
             temp = piecesConnectees;
 
