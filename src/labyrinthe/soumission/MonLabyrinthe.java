@@ -37,12 +37,19 @@ public class MonLabyrinthe implements Labyrinthe {
 
     @Override
     public Piece[] getPieces() {
+
         return this.pieces;
     }
 
     @Override
     public int nombreDePieces() {
-        return pieces.length;
+        int j=0;
+        for (int i = 0; i < 50; i++) {
+            if (pieces[i]!=null){
+                j++;
+            }
+        }
+        return j;
     }
 
 
@@ -55,6 +62,8 @@ public class MonLabyrinthe implements Labyrinthe {
             id = e.getID();
             if (pieces[id]==null)
                 pieces[id] = e;
+            if (pieces[0]==null)
+                pieces[0] = out;
             ajouteCorridor(out, e);
         }
 
