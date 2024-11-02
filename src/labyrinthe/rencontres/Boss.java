@@ -1,7 +1,7 @@
 package labyrinthe.rencontres;
 
 /** une rencontre de type Boss */
-public class Boss  extends Gargouille{
+public class Boss extends Gargouille{
 
     @Override
     public String rencontrer() {
