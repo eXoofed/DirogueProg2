@@ -92,9 +92,11 @@ public class MonLabyrinthe implements Labyrinthe {
 
                     listesAdj[idDeux][i]=idUn;
                 }
-        }
+            }
 
 
+        } else {
+            System.out.println("Une ou les pièce(s) n'existe(nt) pas.");
         }
 
 
