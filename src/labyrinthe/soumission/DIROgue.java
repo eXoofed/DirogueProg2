@@ -54,7 +54,6 @@ public class DIROgue {
 			}
 
 			input = scanObj.nextLine();
-			System.out.println(input);
 		}
 
 		MonLabyrinthe labyrinthe = new MonLabyrinthe(piecesLab);
@@ -77,7 +76,6 @@ public class DIROgue {
 
 			//On vérifie validité des ID, sinon on lance erreur
 			if (id >=0 && idDeux >=0 && id <50 && idDeux<50 && id!=idDeux){
- 				System.out.println("waoh"+id+"woohoo"+idDeux);
 				 labyrinthe.ajouteCorridor(labyrinthe.pieces[id],labyrinthe.pieces[idDeux]);
 			}
 			else{
@@ -109,6 +107,7 @@ public class DIROgue {
 
 		rapport += "Donjon avec " + npieces + " pieces:\n";
 
+		// boucle sur les pieces, pour les afficher avec leur connections
 		for (int i=0; i<50 || i<4 ; i++) {
 			if (pieces[i] != null) {
 				rapport += pieces[i] + ":";
@@ -156,7 +155,6 @@ public class DIROgue {
 	public static String genererScenario(Aventure a) {
 		Piece[] chemin = a.cheminJusquAuBoss();
 		String scenario = "Scenario:\n";
-		System.out.println(chemin.length);
 
 		for (int i = 0; i < chemin.length; i++) {
 			Rencontre x = null;
