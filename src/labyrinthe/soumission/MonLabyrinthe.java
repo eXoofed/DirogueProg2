@@ -124,7 +124,7 @@ public class MonLabyrinthe implements Labyrinthe {
     @Override
     public Piece[] getPiecesConnectees(Piece e) {
         //Beson de tampon pour resize
-        Piece[] temp = new Piece[0];
+        Piece[] temp;
         Piece[] piecesConnectees = new Piece[0];
 
         if (e== null)
@@ -137,7 +137,7 @@ public class MonLabyrinthe implements Labyrinthe {
         while (i<8 && listesAdj[id][i] != -1) {
             temp = piecesConnectees;
 
-            piecesConnectees= new Piece[i+1];
+            piecesConnectees= new Piece[piecesConnectees.length+1];
 
             piecesConnectees[i]=pieces[listesAdj[id][i]];
 
