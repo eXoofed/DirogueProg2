@@ -109,7 +109,7 @@ public class MonAventure extends Aventure {
         else {
             chaine = new Piece[pieceBoss + 1];
             for (int j = 0; j < pieceBoss; j++) {
-                chaine[i] = pieces[i];
+                chaine[j] = pieces[j];
             }
         }
 
