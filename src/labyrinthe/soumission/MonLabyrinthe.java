@@ -62,6 +62,8 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
             id = e.getID();
             if (pieces[id]==null)
                 pieces[id] = e;
+            if (pieces[0]==null)
+                pieces[0] = out;
             ajouteCorridor(out, e);
         }
 
