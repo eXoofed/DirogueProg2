@@ -3,14 +3,20 @@ import labyrinthe.code_squelette.*;
 
 public class MonLabyrinthe implements Labyrinthe {
     /**
-     * Contient les ids que chaque piece a accès.
+     * La listeAdj[a] est le tableau qui contient les IDs des pièces adjacentes à la pièce ayant le ID a.
+     * -1 pour les emplacements vides.
      */
     int[][] listesAdj;
     /**
-     *
+     * Contient toutes les pièces possibles, a une longueur de 50 et [ID] retourne la pièce associée
+     * null aux pièces non-existance
      */
     Piece[] pieces;
 
+    /**
+     * Prend en paramètre un tableaux de pièces, initialise tous les listes adjacentes avec des -1 à chaque élément
+     * @param pieces
+     */
     public MonLabyrinthe(Piece[] pieces) {
 
         //On déclare 50 et 8 emplacements afin d'éviter une quantité excessive de resizes.
