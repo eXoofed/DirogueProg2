@@ -52,6 +52,11 @@ public class DIROgue {
 
 		MonLabyrinthe labyrinthe = new MonLabyrinthe(piecesLab);
 
+		if (labyrinthe.listesAdj[0][0]==-1){
+			labyrinthe.ajouteEntree(Exterieur.getExterieur(),labyrinthe.pieces[1]);
+
+		}
+
 		System.out.println("Vous pouvez rajouter des corridors (corridor id1 id2)");
 		input = scanObj.nextLine();
 		while (!input.equals("FIN")){
@@ -72,10 +77,7 @@ public class DIROgue {
 			input = scanObj.nextLine();
 		}
 
-		if (labyrinthe.listesAdj[0][0]==-1){
-			labyrinthe.ajouteEntree(Exterieur.getExterieur(),labyrinthe.pieces[1]);
 
-		}
 		MonAventure aventure = new MonAventure(labyrinthe);
 		System.out.println(genererRapport(aventure));
 		System.out.println(genererScenario(aventure));
