@@ -91,10 +91,12 @@ public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
 
     @Override
     public boolean existeCorridorEntre(Piece e1, Piece e2) {
-        int idUn = e1.getID();
-        int idDeux = e2.getID();
-        if (pieces[idUn]!=null && pieces[idDeux]!=null)
+        int idUn;
+        int idDeux;
+        if (e1!=null && e2!=null)
         {
+            idUn = e1.getID();
+            idDeux = e2.getID();
             for (int i = 0; i < 8; i++) {
                 if (listesAdj[idDeux][i] == idUn) {
                     return true;
