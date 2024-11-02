@@ -47,7 +47,6 @@ public class DIROgue {
 				System.out.println("Le ID ou type de rencontre est invalide.");
 			}
 			input = scanObj.nextLine();
-			System.out.println(input);
 		}
 
 		MonLabyrinthe labyrinthe = new MonLabyrinthe(piecesLab);
@@ -68,7 +67,6 @@ public class DIROgue {
 
 
 			if (id >=0 && idDeux >=0 && id <50 && idDeux<50 && id!=idDeux){
- 				System.out.println("waoh"+id+"woohoo"+idDeux);
 				 labyrinthe.ajouteCorridor(labyrinthe.pieces[id],labyrinthe.pieces[idDeux]);
 			}
 			else{
@@ -100,6 +98,7 @@ public class DIROgue {
 
 		rapport += "Donjon avec " + npieces + " pieces:\n";
 
+		// boucle sur les pieces, pour les afficher avec leur connections
 		for (int i=0; i<50 || i<4 ; i++) {
 			if (pieces[i] != null) {
 				rapport += pieces[i] + ":";
