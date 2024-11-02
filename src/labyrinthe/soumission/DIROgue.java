@@ -10,14 +10,17 @@ public class DIROgue {
 	public static void main(String[] args) {
 
 
-		// Créer MonAventure et MonLabyrinthe
+		// Pour créer le labyrinthe
 		Piece[] piecesLab = new Piece[50];
+		//Lire les inputs
 		Scanner scanObj = new Scanner(System.in);
 		String input = "";
 		int id;
 		int idDeux;
+		//Des buffers pour découper du texte de manière pratique
 		int esp1;
 		int esp2;
+		//Simplement des booléenes pour que "recontreValide" rentre dans une ligne
 		boolean cond1;
 		boolean cond2;
 		boolean rencontreValide;
@@ -26,7 +29,7 @@ public class DIROgue {
 		System.out.println("Vous pouvez rajouter des pièces (piece id rencontre)");
 		input = scanObj.nextLine();
 
-
+		//On attend un format particulier sinon on lance des erreurs.
 		while (!input.equals("CORRIDORS")) {
 
 			esp1 = input.indexOf(" ");
@@ -34,18 +37,22 @@ public class DIROgue {
 			id = Integer.valueOf(input.substring(esp1+1,esp2));
 			input = input.substring(esp2+1, input.length()).toUpperCase();
 
+			//validité de l'enum
+
 			cond1 = (input.equals(RencontreType.BOSS.name()) || input.equals(RencontreType.RIEN.name()));
 			cond2 = (input.equals(RencontreType.MONSTRE.name()) || input.equals(RencontreType.TRESOR.name()));
 			rencontreValide = cond1 || cond2;
 
+			//valité de l'id
 			if (id > 0 && id < 50 && rencontreValide) {
-
+				//Si tout est bien on rajoute dans le tableau au bon endroit.
 				piecesLab[id] = new Piece(id, RencontreType.valueOf(input));
 
 			}
 			else {
 				System.out.println("Le ID ou type de rencontre est invalide.");
 			}
+
 			input = scanObj.nextLine();
 			System.out.println(input);
 		}
@@ -53,6 +60,7 @@ public class DIROgue {
 		MonLabyrinthe labyrinthe = new MonLabyrinthe(piecesLab);
 
 		if (labyrinthe.listesAdj[0][0]==-1){
+			//Il y aura toujours une sortie attachée à une pièce
 			labyrinthe.ajouteEntree(Exterieur.getExterieur(),labyrinthe.pieces[1]);
 
 		}
@@ -61,12 +69,13 @@ public class DIROgue {
 		input = scanObj.nextLine();
 		while (!input.equals("FIN")){
 
+			//On découpe selon le format attendu
 			esp1 = input.indexOf(" ");
 			esp2 = input.lastIndexOf(" ");
 			id = Integer.valueOf(input.substring(esp1+1,esp2));
 			idDeux = Integer.valueOf(input.substring(esp2+1, input.length()));
 
-
+			//On vérifie validité des ID, sinon on lance erreur
 			if (id >=0 && idDeux >=0 && id <50 && idDeux<50 && id!=idDeux){
  				System.out.println("waoh"+id+"woohoo"+idDeux);
 				 labyrinthe.ajouteCorridor(labyrinthe.pieces[id],labyrinthe.pieces[idDeux]);
@@ -77,7 +86,7 @@ public class DIROgue {
 			input = scanObj.nextLine();
 		}
 
-
+		//On print les rapports et scenarios
 		MonAventure aventure = new MonAventure(labyrinthe);
 		System.out.println(genererRapport(aventure));
 		System.out.println(genererScenario(aventure));

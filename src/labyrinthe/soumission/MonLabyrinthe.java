@@ -16,6 +16,7 @@ public class MonLabyrinthe implements Labyrinthe {
         //On déclare 50 et 8 emplacements afin d'éviter une quantité excessive de resizes.
         listesAdj = new int[50][8];
         for (int i = 0; i < 50; i++) {
+            //-1 désigne du "vide"
             listesAdj[i] = new int[] {-1,-1,-1,-1,-1,-1,-1,-1};
         }
         this.pieces = pieces;
@@ -47,10 +48,11 @@ public class MonLabyrinthe implements Labyrinthe {
     @Override
     public void ajouteEntree(Exterieur out, Piece e) {
         int id;
-
+        //validité du param
         if (e!=null)
         {
             id = e.getID();
+            //Si l'extérieur n'existe pas ou la pièce, on la rajoute.
             if (pieces[id]==null)
                 pieces[id] = e;
             if (pieces[0]==null)
