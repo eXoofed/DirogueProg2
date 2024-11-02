@@ -13,23 +13,13 @@ public class MonLabyrinthe implements Labyrinthe {
 
     public MonLabyrinthe(Piece[] pieces) {
 
-        //On déclare 8 emplacements afin d'éviter une quantité excessive de resizes.
+        //On déclare 50 et 8 emplacements afin d'éviter une quantité excessive de resizes.
         listesAdj = new int[50][8];
         for (int i = 0; i < 50; i++) {
             listesAdj[i] = new int[] {-1,-1,-1,-1,-1,-1,-1,-1};
         }
         this.pieces = pieces;
-        /*
-        for (int i = 0; i < nbPieces-1; i++) {
-            for (int j = 0; j < nbPieces-1-i; j++) {
-                if (this.pieces[j].getID()>this.pieces[j+1].getID()){
-                    temp= this.pieces[j];
-                    this.pieces[j]=this.pieces[j+1];
-                    this.pieces[j+1]=temp;
-                }
-            }
-        }
-         */
+
 
     }
 
@@ -44,6 +34,7 @@ public class MonLabyrinthe implements Labyrinthe {
     @Override
     public int nombreDePieces() {
         int j=0;
+        //Puisque ceci peut varier selon les méthodes appelées, on calcule à chaque fois
         for (int i = 0; i < 50; i++) {
             if (pieces[i]!=null){
                 j++;
