@@ -1,7 +1,7 @@
 package labyrinthe.soumission;
 import labyrinthe.code_squelette.*;
 
-public class MonLabyrinthe implements Labyrinthe { //TODO: extends ? implements?
+public class MonLabyrinthe implements Labyrinthe {
     /**
      * Contient les ids que chaque piece a accès.
      */

@@ -92,9 +92,6 @@ public class MonAventure extends Aventure {
         int pieceBoss = -1; // indice de la piece avec boss
 
         while (i < 49 && (pieceBoss == -1) && pieces[i]!=null && !discontinue) {
-            //boolean aProchain = pieces[i].getID() + 1 == pieces[i+1].getID();  // prochain existe
-            //boolean aCorridor = false;  // prochain est connecté ou non
-            //if (aProchain) // vérifie si le prochain existe avant de vérifier connection
             boolean aCorridor = carte.existeCorridorEntre(pieces[i-1], pieces[i]);
 
             if (!aCorridor)

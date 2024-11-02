@@ -98,10 +98,12 @@ public class DIROgue {
 
 		rapport += "Donjon avec " + npieces + " pieces:\n";
 
-		for (int i=0; i<npieces || i<4 ; i++) {
-			rapport += pieces[i] + ":";
-			rapport += carte.getPiecesConnectees(pieces[i]);
-			rapport += "\n";
+		for (int i=0; i<50 || i<4 ; i++) {
+			if (pieces[i] != null) {
+				rapport += pieces[i] + ":";
+				rapport += carte.getPiecesConnectees(pieces[i]);
+				rapport += "\n";
+			}
 		}
 
 		// Affiche si c'est pacifique ou non
