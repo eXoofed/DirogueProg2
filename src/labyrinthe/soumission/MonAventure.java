@@ -108,7 +108,7 @@ public class MonAventure extends Aventure {
             chaine = new Piece[0];  // retourne une chaine vide
         else {
             chaine = new Piece[pieceBoss + 1];
-            for (int j = 0; j < pieceBoss; j++) {
+            for (int j = 0; j < pieceBoss + 1; j++) {
                 chaine[j] = pieces[j];
             }
         }
