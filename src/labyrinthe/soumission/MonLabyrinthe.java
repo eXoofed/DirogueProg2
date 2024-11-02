@@ -139,7 +139,7 @@ public class MonLabyrinthe implements Labyrinthe {
 
             piecesConnectees= new Piece[i+1];
 
-            piecesConnectees[i+1]=pieces[listesAdj[id][i]];
+            piecesConnectees[i]=pieces[listesAdj[id][i]];
 
             for (int j = 0; j < i; j++) {
                 piecesConnectees[j] = temp[j];
