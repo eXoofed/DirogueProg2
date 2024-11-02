@@ -145,7 +145,6 @@ public class DIROgue {
 	public static String genererScenario(Aventure a) {
 		Piece[] chemin = a.cheminJusquAuBoss();
 		String scenario = "Scenario:\n";
-		System.out.println(chemin.length);
 
 		for (int i = 0; i < chemin.length; i++) {
 			Rencontre x = null;
